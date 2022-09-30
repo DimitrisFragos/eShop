@@ -1,7 +1,8 @@
 <?php
 if (isset($_SERVER['HTTP_COOKIE'])) {
 	require 'config.php';
-
+    $_SESSION['token'] = md5(uniqid(mt_rand(), true));
+    $TOKEN =  $_SESSION['token'];
 	$grand_total = 0;
 	$allItems = '';
 	$items = [];
@@ -32,6 +33,8 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 
 <body>
 <?php if (isset($_SERVER['HTTP_COOKIE'])) { ?>
+<?php echo '<script>console.log("' . var_dump($_SESSION) . '")</script>' ?>
+<?php echo "$TOKEN" ?>
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
     <a class="navbar-brand" href="index.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile Store</a>
@@ -101,8 +104,9 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
-
+  <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?? '' ?>">
   <script type="text/javascript">
+<?php if ($TOKEN ==  $_SESSION['token']) { ?>
   $(document).ready(function() {
 
     // Sending Form data to the server
@@ -134,6 +138,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
       });
     }
   });
+<?php } ?>
   </script>
 <?php } ?>
 <?php if (!isset($_SERVER['HTTP_COOKIE'])) {  session_unset(); session_destroy(); header("Location: hlogin.php"); exit();}?>
