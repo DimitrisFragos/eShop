@@ -1,6 +1,4 @@
-<?php
-  session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +15,7 @@
 
 <body>
     <?php if (isset($_SERVER['HTTP_COOKIE'])) { ?>
+      <?php echo '<script>session_start();</script>' ?>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <!-- Brand -->
         <a class="navbar-brand" href="index.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile Store</a>
