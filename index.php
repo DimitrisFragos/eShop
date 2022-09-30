@@ -65,7 +65,7 @@
                             <b>Quantity : </b>
                           </div>
                           <div class="col-md-6">
-                            <input type="number" class="form-control pqty" value="<?= $row['product_qty'] ?>">
+                            <input type="number" class="form-control pqty" value="<?= $row['product_qty']  ?>"  min="0" max="100" >
                           </div>
                         </div>
                         <input type="hidden" class="pid" value="<?= $row['id'] ?>">
