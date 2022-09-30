@@ -1,4 +1,5 @@
 <?php
+if (isset($_SERVER['HTTP_COOKIE'])) {
 	require 'config.php';
 
 	$grand_total = 0;
@@ -14,6 +15,7 @@
 	  $items[] = $row['ItemQty'];
 	}
 	$allItems = implode(', ', $items);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +31,7 @@
 </head>
 
 <body>
+<?php if (isset($_SERVER['HTTP_COOKIE'])) { ?>
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
     <a class="navbar-brand" href="index.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile Store</a>
@@ -132,6 +135,8 @@
     }
   });
   </script>
+<?php } ?>
+<?php if (!isset($_SERVER['HTTP_COOKIE'])) {  session_unset(); session_destroy(); header("Location: hlogin.php"); exit();}?>
 </body>
 <a href="logout.php">Logout</a>
 </html>
