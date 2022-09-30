@@ -35,16 +35,19 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             	header("Location: index.php");
 		        exit();
             }else{
+                mysqli_close($conn);
 				header("Location: hlogin.php?error=Incorect User name or password");
 		        exit();
 			}
 		}else{
+		    mysqli_close($conn);
 			header("Location: hlogin.php?error=Incorect User name or password");
 	        exit();
 		}
 	}
 	
 }else{
+    mysqli_close($conn);
 	header("Location: hlogin.php");
 	exit();
 }
