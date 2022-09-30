@@ -40,11 +40,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_name`, `password`, `name`) VALUES
-(1, 'elias', '123', 'Elias'),
-(2, 'john', 'abc', 'John'),
-(3, 'chris', 'secret', 'Chris'),
-(4, 'admin', 'admin', 'Administrator'),
-(5, 'user', 'pass', 'User');
+(1, 'elias', MD5('123'), 'Elias'),
+(2, 'john', MD5('abc'), 'John'),
+(3, 'chris', MD5('secret'), 'Chris'),
+(4, 'admin', MD5('admin'), 'Administrator'),
+(5, 'user', MD5('pass'), 'User');
 
 --
 -- Indexes for dumped tables
