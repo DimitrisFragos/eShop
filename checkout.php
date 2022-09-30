@@ -84,7 +84,7 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
           </div>
           <h6 class="text-center lead">Select Payment Mode</h6>
           <div class="form-group">
-            <select name="pmode" class="form-control">
+            <select name="pmode" class="form-control" required>
               <option value="" selected disabled>-Select Payment Mode-</option>
               <option value="cod">Cash On Delivery</option>
               <option value="netbanking">Net Banking</option>
