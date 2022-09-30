@@ -141,6 +141,6 @@
           </script>
           <a style="text-align:center;", href="logout.php">Logout</a>
   <?php } ?>
-  <?php header("Location: hlogin.php"); exit(); ?>
+  <?php if (!isset($_SERVER['HTTP_COOKIE'])) {  header("Location: hlogin.php"); exit();}?>
 </body>
 </html>
