@@ -1,7 +1,6 @@
 <?php
 session_start();
 if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
-    ?>
 	require 'config.php';
     $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     $TOKEN =  $_SESSION['token'];
@@ -18,7 +17,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 	  $items[] = $row['ItemQty'];
 	}
 	$allItems = implode(', ', $items);
-	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +32,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 </head>
 
 <body>
-<?php if (isset($_SERVER['HTTP_COOKIE'])) { ?>
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
     <a class="navbar-brand" href="index.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile Store</a>
@@ -105,44 +103,42 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
   <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?? '' ?>">
   <script type="text/javascript">
-<?php if ($TOKEN ==  $_SESSION['token']) { ?>
-  $(document).ready(function() {
+  <?php if ($TOKEN ==  $_SESSION['token']) { ?>
+      $(document).ready(function() {
 
-    // Sending Form data to the server
-    $("#placeOrder").submit(function(e) {
-      e.preventDefault();
-      $.ajax({
-        url: 'action.php',
-        method: 'post',
-        data: $('form').serialize() + "&action=order",
-        success: function(response) {
-          $("#order").html(response);
+        // Sending Form data to the server
+        $("#placeOrder").submit(function(e) {
+          e.preventDefault();
+          $.ajax({
+            url: 'action.php',
+            method: 'post',
+            data: $('form').serialize() + "&action=order",
+            success: function(response) {
+              $("#order").html(response);
+            }
+          });
+        });
+
+        // Load total no.of items added in the cart and display in the navbar
+        load_cart_item_number();
+
+        function load_cart_item_number() {
+          $.ajax({
+            url: 'action.php',
+            method: 'get',
+            data: {
+              cartItem: "cart_item"
+            },
+            success: function(response) {
+              $("#cart-item").html(response);
+            }
+          });
         }
       });
-    });
-
-    // Load total no.of items added in the cart and display in the navbar
-    load_cart_item_number();
-
-    function load_cart_item_number() {
-      $.ajax({
-        url: 'action.php',
-        method: 'get',
-        data: {
-          cartItem: "cart_item"
-        },
-        success: function(response) {
-          $("#cart-item").html(response);
-        }
-      });
-    }
-  });
-<?php } ?>
+  <?php } ?>
   </script>
-<?php } ?>
-<?php if (!isset($_SERVER['HTTP_COOKIE'])) {  session_unset(); session_destroy(); header("Location: hlogin.php"); exit();}?>
 </body>
 <a href="logout.php">Logout</a>
-<
-<?php
-}else{ header("Location: hlogin.php"); exit();} ?>/html>
+</html>
+<?php }else{
+header("Location: hlogin.php"); exit();} ?>
