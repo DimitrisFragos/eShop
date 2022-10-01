@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+if (isset($_SESSION['id'])) {
 	require 'config.php';
     $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     $TOKEN =  $_SESSION['token'];
