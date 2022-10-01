@@ -1,5 +1,7 @@
 <?php
-if (isset($_SERVER['HTTP_COOKIE'])) {
+session_start();
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+    ?>
 	require 'config.php';
     $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     $TOKEN =  $_SESSION['token'];
@@ -17,7 +19,6 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 	}
 	$allItems = implode(', ', $items);
 	}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -142,4 +143,6 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 <?php if (!isset($_SERVER['HTTP_COOKIE'])) {  session_unset(); session_destroy(); header("Location: hlogin.php"); exit();}?>
 </body>
 <a href="logout.php">Logout</a>
-</html>
+<
+<?php
+}else{ header("Location: hlogin.php"); exit();} ?>/html>

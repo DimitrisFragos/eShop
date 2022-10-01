@@ -1,3 +1,7 @@
+<?php
+session_start();
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,8 +16,6 @@
 </head>
 
 <body>
-    <?php if (isset($_SERVER['HTTP_COOKIE'])) { ?>
-      <?php echo '<script>session_start();</script>' ?>
       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <!-- Brand -->
         <a class="navbar-brand" href="index.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile Store</a>
@@ -166,8 +168,7 @@
       });
       </script>
       <a href="logout.php">Logout</a>
-    <?php } ?>
-    <?php if (!isset($_SERVER['HTTP_COOKIE'])) {  session_unset(); session_destroy(); header("Location: hlogin.php"); exit();}?>
-</body>
-
+    </body>
 </html>
+<?php
+}else{ header("Location: hlogin.php"); exit();} ?>

@@ -1,18 +1,21 @@
+<?php
+session_start();
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="author" content="Unknown">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Shopping Cart System</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
-</head>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="author" content="Unknown">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Shopping Cart System</title>
+      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
+      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
+    </head>
 
-<body>
-  <?php if (isset($_SERVER['HTTP_COOKIE'])) { ?>
+    <body>
           <!-- Navbar start -->
           <nav class="navbar navbar-expand-md bg-dark navbar-dark">
             <a class="navbar-brand" href="index.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Mobile Store</a>
@@ -140,7 +143,7 @@
           });
           </script>
           <a style="text-align:center;", href="logout.php">Logout</a>
-  <?php } ?>
-  <?php if (!isset($_SERVER['HTTP_COOKIE'])) {  header("Location: hlogin.php"); exit();}?>
-</body>
+    </body>
 </html>
+<?php
+}else{ header("Location: hlogin.php"); exit();} ?>
