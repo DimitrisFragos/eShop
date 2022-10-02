@@ -1,6 +1,6 @@
 <?php
 	
-	$sname= "localhost";
+	$sname= "software.security";
 	$unmae= "eShop";
 	$password = "Asd123!.";
 	$db_name = "eshopdb";
